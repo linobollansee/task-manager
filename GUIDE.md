@@ -172,3 +172,23 @@ class Task extends Model
 }
 ```
 
+Add routes in routes/web.php
+
+```
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::resource('tasks', TaskController::class);
+```
+
+
+Displays a comprehensive overview of all registered URL routes
+```
+PS C:\task-manager> php artisan route:list
+```
