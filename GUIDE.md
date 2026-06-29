@@ -111,3 +111,44 @@ Create a Task model
 ```
 php artisan make:model Task -mcr
 ```
+
+Open the new migration file `database/migrations/xxxx_xx_xx_create_tasks_table.php` and define the columns
+
+```
+public function up(): void
+{
+    Schema::create('tasks', function (Blueprint $table) {
+        $table->id();
+        $table->string('title');
+        $table->text('description')->nullable();
+        $table->boolean('completed')->default(false);
+        $table->timestamps();
+    });
+}
+```
+
+Creates the tasks table in PostgreSQL
+
+```
+php artisan migrate
+```
+
+Configure the model in `app/Models/Task.php`
+
+```
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Task extends Model
+{
+    protected $fillable = [
+        'title',
+        'description',
+        'completed',
+    ];
+}
+```
+
